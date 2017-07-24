@@ -8,7 +8,9 @@
       <hr>
       <div class="row">
          <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <component :is="show" @answerCheck="changeComponent"></component>
+            <component :is="show" @answerCheck="changeComponent"
+             keep-alive
+             @changeBack="changeToQuestion"></component>
          </div>
       </div>
    </div>
@@ -32,6 +34,9 @@ export default {
          } else {
             this.show = "app-wrong";
          }
+      },
+      changeToQuestion(question) {
+         this.show = question;
       }
    },
    components: {

@@ -5,7 +5,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+   methods: {
+      changeBack() {
+         this.$emit("changeBack", "app-question");
+      }
+   }
+};
 </script>
 
 <style>
