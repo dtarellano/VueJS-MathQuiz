@@ -15,6 +15,7 @@
 
 <script>
 export default {
+   props: ["newQuestion"],
    data() {
       return {
          question: "",
@@ -48,22 +49,29 @@ export default {
             correctAnswer + 8,
             correctAnswer
          );
+         this.multipleChoice[0].answer = false;
+         // Making False when I generate a new question
          this.multipleChoice[1].number = this.numberGenerator(
             correctAnswer - 7,
             correctAnswer + 2,
             correctAnswer
          );
+         this.multipleChoice[1].answer = false;
+         // Making False when I generate a new question
          this.multipleChoice[2].number = this.numberGenerator(
             correctAnswer - 7,
             correctAnswer + 8,
             correctAnswer
          );
+         this.multipleChoice[2].answer = false;
+         // Making False when I generate a new question
          this.multipleChoice[3].number = this.numberGenerator(
             correctAnswer - 2,
             correctAnswer + 4,
             correctAnswer
          );
-
+         this.multipleChoice[3].answer = false;
+         // Making False when I generate a new question
          // Correct Answer
          this.multipleChoice[rightAnswer].number = correctAnswer;
          this.multipleChoice[rightAnswer].answer = true;
@@ -82,6 +90,11 @@ export default {
    },
    created() {
       this.generateQuestion();
+   },
+   watch: {
+      newQuestion() {
+         this.generateQuestion();
+      }
    }
 };
 </script>
