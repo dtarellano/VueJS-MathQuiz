@@ -7,6 +7,7 @@
 <script>
 var time;
 export default {
+   props: ["newTimer"],
    data() {
       return {
          timer: 10
@@ -30,10 +31,22 @@ export default {
    },
    watch: {
       timer() {
-         if (this.timer === 0) {
+         if (this.timer <= 0) {
             window.clearInterval(time);
+            if (this.newTimer) {
+               this.timer = 10;
+               this.setTimer();
+               this.$emit("resetTimer");
+            }
          }
       }
+      // newTimer() {
+      //    if (this.newTimer) {
+      //       this.timer = 10;
+      //       this.setTimer();
+      //       this.$emit("resetTimer");
+      //    }
+      // }
    }
 };
 </script>

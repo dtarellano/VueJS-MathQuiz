@@ -8,7 +8,10 @@
       <hr>
       <div class="row">
          <div class="col-md-3">
-            <app-timer></app-timer>
+            <app-timer
+               :newTimer="newTimer"
+               @resetTimer="resetTheTimer">
+            </app-timer>
          </div>
          <div class="col-xs-12 col-sm-8 col-md-6">
             <transition
@@ -50,7 +53,8 @@ export default {
          show: "app-question",
          newQuestion: 0,
          right: 0,
-         wrong: 0
+         wrong: 0,
+         newTimer: true
       };
    },
    methods: {
@@ -61,11 +65,16 @@ export default {
             this.right++;
          } else {
             this.show = "app-wrong";
+            this.newQuestion++;
             this.wrong++;
          }
       },
       changeToQuestion(question) {
          this.show = question;
+         this.newTimer = true;
+      },
+      resetTheTimer() {
+         this.newTimer = false;
       }
    },
    components: {
