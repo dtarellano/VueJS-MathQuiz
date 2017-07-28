@@ -26,27 +26,27 @@ export default {
          }, 1000);
       }
    },
-   mounted() {
+   created() {
       this.setTimer();
    },
    watch: {
       timer() {
-         if (this.timer <= 0) {
+         if (this.timer === 0) {
             window.clearInterval(time);
-            if (this.newTimer) {
-               this.timer = 10;
-               this.setTimer();
-               this.$emit("resetTimer");
-            }
+            // this.$emit("resetTimer");
+            // alert("You ran out of time. New Question...");
+            this.$emit("timeIsUp", "app-timesup");
+         }
+      },
+      newTimer() {
+         if (this.newTimer) {
+            console.log("hi");
+            window.clearInterval(time);
+            this.timer = 10;
+            this.setTimer();
+            this.$emit("resetTimer");
          }
       }
-      // newTimer() {
-      //    if (this.newTimer) {
-      //       this.timer = 10;
-      //       this.setTimer();
-      //       this.$emit("resetTimer");
-      //    }
-      // }
    }
 };
 </script>

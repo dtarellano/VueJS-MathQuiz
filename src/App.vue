@@ -10,7 +10,9 @@
          <div class="col-md-3">
             <app-timer
                :newTimer="newTimer"
-               @resetTimer="resetTheTimer">
+               @resetTimer="resetTheTimer"
+               @changeBack="changeToQuestion"
+               @timeIsUp="changeToTimesUp">
             </app-timer>
          </div>
          <div class="col-xs-12 col-sm-8 col-md-6">
@@ -45,6 +47,7 @@ import Question from "./components/Question.vue";
 import CorrectAnswer from "./components/CorrectAnswer.vue";
 import WrongAnswer from "./components/WrongAnswer.vue";
 import Timer from "./components/Timer.vue";
+import TimesUp from "./components/TimesUp.vue";
 import QuestionTracker from "./components/QuestionTracker.vue";
 
 export default {
@@ -54,7 +57,7 @@ export default {
          newQuestion: 0,
          right: 0,
          wrong: 0,
-         newTimer: true
+         newTimer: false
       };
    },
    methods: {
@@ -75,6 +78,11 @@ export default {
       },
       resetTheTimer() {
          this.newTimer = false;
+      },
+      changeToTimesUp(payload) {
+         this.show = payload;
+         this.newQuestion++;
+         this.wrong++;
       }
    },
    components: {
@@ -82,7 +90,8 @@ export default {
       "app-correct": CorrectAnswer,
       "app-wrong": WrongAnswer,
       "app-timer": Timer,
-      "app-questiontracker": QuestionTracker
+      "app-questiontracker": QuestionTracker,
+      "app-timesup": TimesUp
    }
 };
 </script>
