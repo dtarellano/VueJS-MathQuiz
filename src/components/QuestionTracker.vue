@@ -1,6 +1,11 @@
 <template>
-  <div class="text-center">
-     {{ right }} / {{ wrong }}
+   <div>
+      <div class="text-center">
+         How many you got right: {{ right }}
+      </div>
+      <div class="text-center">
+         How many you got wrong: {{ wrong }}
+      </div>
   </div>
 </template>
 
